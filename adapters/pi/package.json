@@ -1,0 +1,16 @@
+{
+  "name": "contextgc-pi-adapter",
+  "version": "0.1.0",
+  "description": "Thin Pi adapter for ContextGC",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  },
+  "license": "MIT OR Apache-2.0"
+}

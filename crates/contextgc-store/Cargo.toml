@@ -1,0 +1,18 @@
+[package]
+name = "contextgc-store"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+contextgc-core = { path = "../contextgc-core" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+rusqlite = { workspace = true }
+
+[dev-dependencies]
+anyhow = { workspace = true }

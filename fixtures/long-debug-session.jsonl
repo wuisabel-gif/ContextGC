@@ -1,0 +1,2 @@
+{"type":"context.add","item":{"id":"cgc0000000000000001","kind":"SystemPrompt","content":"You are a helpful coding assistant.","token_count":7,"created_at":"2026-01-01T00:00:00Z","source":"system","metadata":{},"state":"Active"}}
+{"type":"context.add","item":{"id":"cgc0000000000000002","kind":"UserMessage","content":"Fix the login middleware.","token_count":6,"created_at":"2026-01-01T00:00:01Z","source":"ingest","metadata":{},"state":"Active"}}

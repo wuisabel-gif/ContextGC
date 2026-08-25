@@ -1,0 +1,18 @@
+[package]
+name = "contextgc-policy"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+contextgc-core = { path = "../contextgc-core" }
+contextgc-tokenizer = { path = "../contextgc-tokenizer" }
+regex = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+chrono = { workspace = true }
+
+[dev-dependencies]
+anyhow = { workspace = true }

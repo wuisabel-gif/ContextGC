@@ -1,0 +1,20 @@
+# Rust build artifacts
+target/
+
+# Local ContextGC databases and runtime files
+.contextgc.db
+.contextgc.db-*
+*.db
+*.db-shm
+*.db-wal
+
+# Node / TypeScript adapter artifacts
+node_modules/
+adapters/pi/node_modules/
+adapters/pi/dist/
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp

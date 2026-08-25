@@ -1,0 +1,4 @@
+{"type":"session.start","request_id":"r1","session_id":"synthetic-128k","model":{"name":"generic-128k","context_window":128000,"reserved_output_tokens":8000}}
+{"type":"context.add","request_id":"r2","item":{"id":"cgc0000000000000001","kind":"SystemPrompt","content":"You are an expert Rust engineer. Be concise.","token_count":9,"created_at":"2026-01-01T00:00:00Z","source":"system","metadata":{"pinned":true},"state":"Active"}}
+{"type":"context.add","request_id":"r3","item":{"id":"cgc0000000000000002","kind":"UserMessage","content":"Refactor the auth module.","token_count":6,"created_at":"2026-01-01T00:00:01Z","source":"ingest","metadata":{},"state":"Active"}}
+{"type":"context.add","request_id":"r4","item":{"id":"cgc0000000000000003","kind":"Constraint","content":"Do not modify the database schema.","token_count":7,"created_at":"2026-01-01T00:00:02Z","source":"ingest","metadata":{"pinned":true},"state":"Active"}}

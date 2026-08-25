@@ -1,0 +1,16 @@
+[package]
+name = "contextgc-tokenizer"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+contextgc-core = { path = "../contextgc-core" }
+serde = { workspace = true }
+unicode-segmentation = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+anyhow = { workspace = true }

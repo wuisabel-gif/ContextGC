@@ -1,0 +1,29 @@
+[package]
+name = "contextgc-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "contextgc"
+path = "src/main.rs"
+
+[dependencies]
+contextgc-core = { path = "../contextgc-core" }
+contextgc-tokenizer = { path = "../contextgc-tokenizer" }
+contextgc-policy = { path = "../contextgc-policy" }
+contextgc-store = { path = "../contextgc-store" }
+contextgc-engine = { path = "../contextgc-engine" }
+contextgc-protocol = { path = "../contextgc-protocol" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+clap = { workspace = true }
+anyhow = { workspace = true }
+
+[dev-dependencies]
+anyhow = { workspace = true }

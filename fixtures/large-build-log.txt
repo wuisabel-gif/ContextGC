@@ -1,0 +1,9 @@
+$ cargo build --release --workspace
+   Compiling contextgc-core v0.1.0
+   Compiling contextgc-tokenizer v0.1.0
+   Compiling contextgc-policy v0.1.0
+   Compiling contextgc-store v0.1.0
+   Compiling contextgc-cli v0.1.0
+    Building [=======================>   ] 142/150: contextgc-policy
+    Building [========================>  ] 145/150: contextgc-cli
+    Finished `release` profile [optimized] target(s) in 12.34s
