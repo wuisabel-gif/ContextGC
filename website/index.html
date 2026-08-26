@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Install ContextGC and give long-running AI agents a predictive, selective context working set."
+    />
+    <meta name="theme-color" content="#0b1020" />
+    <title>ContextGC — Predictive context management for AI agents</title>
+    <link rel="icon" href="logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="ContextGC home">
+          <img class="brand-logo" src="logo.png" alt="ContextGC" />
+          <span>Context<span class="brand-accent">GC</span></span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+          <a href="#install">Install</a>
+          <a href="#first-run">First run</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#integrate">Integrate</a>
+          <a href="#memory">Memory</a>
+          <a href="https://github.com/badlogic/pi-mono" target="_blank" rel="noreferrer">Pi ↗</a>
+          <a href="https://github.com/wuisabel-gif/rho" target="_blank" rel="noreferrer">Rho ↗</a>
+          <a class="nav-github" href="https://github.com/wuisabel-gif/ContextGC" target="_blank" rel="noreferrer">GitHub ↗</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero section-wrap">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="pulse-dot"></span> Built for sessions that outgrow the prompt</div>
+            <h1>Keep agents working when context gets <span class="gradient-text">too big.</span></h1>
+            <p class="hero-lede">
+              ContextGC predicts context pressure and selectively keeps, compresses, externalizes, or evicts context—without destroying the original session history.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#install">Install ContextGC <span>↓</span></a>
+              <a class="button button-quiet" href="https://github.com/wuisabel-gif/ContextGC" target="_blank" rel="noreferrer">View source <span>↗</span></a>
+            </div>
+            <div class="hero-note"><span class="terminal-prompt">$</span> Rust core · SQLite history · JSONL protocol · no LLM required</div>
+          </div>
+          <div class="hero-visual" aria-label="A context working set being reduced before pressure becomes critical">
+            <div class="orb orb-one"></div>
+            <div class="orb orb-two"></div>
+            <div class="context-card context-card-back">
+              <div class="card-topline"><span class="mini-dot red"></span><span class="mini-dot amber"></span><span class="mini-dot green"></span><span class="card-label">persistent history</span></div>
+              <div class="history-lines"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="history-total">2.4m <small>tokens</small></div>
+            </div>
+            <div class="context-card context-card-front">
+              <div class="card-topline"><span class="live-indicator"></span><span class="card-label">active working set</span><span class="pressure-badge">55%</span></div>
+              <div class="working-row"><span class="row-icon pin">⌖</span><span>user constraint</span><strong>PIN</strong></div>
+              <div class="working-row"><span class="row-icon reduce">↘</span><span>build output</span><strong>REDUCE</strong></div>
+              <div class="working-row"><span class="row-icon keep">◆</span><span>current error</span><strong>KEEP</strong></div>
+              <div class="working-row"><span class="row-icon evict">×</span><span>old tool output</span><strong>EVICT</strong></div>
+              <div class="card-footer"><span>projected pressure</span><strong>72% → 55%</strong></div>
+            </div>
+            <div class="floating-chip chip-top"><span>↗</span> predictive</div>
+            <div class="floating-chip chip-bottom"><span>✓</span> history intact</div>
+          </div>
+        </section>
+
+        <section class="proof-strip section-wrap" aria-label="ContextGC capabilities">
+          <div><strong>Selective</strong><span>object-level decisions</span></div>
+          <div><strong>Predictive</strong><span>before the limit hits</span></div>
+          <div><strong>Auditable</strong><span>every action explained</span></div>
+          <div><strong>Portable</strong><span>any harness, any model</span></div>
+        </section>
+
+        <section id="install" class="section-wrap install-section">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker">01 / INSTALL</div>
+              <h2>Get a working binary in minutes.</h2>
+            </div>
+            <p>ContextGC currently builds from source with stable Rust. The install path is intentionally transparent: clone, compile, run.</p>
+          </div>
+
+          <div class="install-layout">
+            <aside class="install-sidebar">
+              <div class="install-step active" data-step="1"><span>01</span><div><strong>Prerequisites</strong><small>Rust + Git</small></div></div>
+              <div class="install-step" data-step="2"><span>02</span><div><strong>Build</strong><small>Release binary</small></div></div>
+              <div class="install-step" data-step="3"><span>03</span><div><strong>Verify</strong><small>First command</small></div></div>
+              <div class="install-step" data-step="4"><span>04</span><div><strong>Run a session</strong><small>Ingest + inspect</small></div></div>
+            </aside>
+
+            <div class="install-content">
+              <div class="os-tabs" role="tablist" aria-label="Installation platform">
+                <button class="os-tab active" type="button" role="tab" aria-selected="true" data-os="mac">macOS / Linux</button>
+                <button class="os-tab" type="button" role="tab" aria-selected="false" data-os="windows">Windows PowerShell</button>
+                <button class="os-tab" type="button" role="tab" aria-selected="false" data-os="source">Source only</button>
+              </div>
+
+              <div class="install-panel active" data-os-panel="mac">
+                <article class="instruction-block" data-step-block="1">
+                  <div class="instruction-number">01</div>
+                  <div>
+                    <h3>Install prerequisites</h3>
+                    <p>You need Git and the latest stable Rust toolchain.</p>
+                    <div class="command-box">
+                      <code><span class="comment"># macOS</span>
+<span class="command">xcode-select --install</span>
+<span class="command">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</span></code>
+                      <button class="copy-button" type="button" data-copy="xcode-select --install\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"><span>Copy</span></button>
+                    </div>
+                    <p class="small-note">On Linux, install your distribution's build tools first, then run the Rustup command.</p>
+                  </div>
+                </article>
+                <article class="instruction-block" data-step-block="2">
+                  <div class="instruction-number">02</div>
+                  <div>
+                    <h3>Clone and compile</h3>
+                    <p>Clone the repository and build the optimized workspace.</p>
+                    <div class="command-box">
+                      <code><span class="command">git clone https://github.com/wuisabel-gif/ContextGC.git</span>
+<span class="command">cd ContextGC</span>
+<span class="command">cargo build --release --workspace</span></code>
+                      <button class="copy-button" type="button" data-copy="git clone https://github.com/wuisabel-gif/ContextGC.git\ncd ContextGC\ncargo build --release --workspace"><span>Copy</span></button>
+                    </div>
+                  </div>
+                </article>
+                <article class="instruction-block" data-step-block="3">
+                  <div class="instruction-number">03</div>
+                  <div>
+                    <h3>Put <code>contextgc</code> on your PATH</h3>
+                    <p>This makes the command available from any project directory.</p>
+                    <div class="command-box">
+                      <code><span class="command">mkdir -p ~/.local/bin</span>
+<span class="command">install -m 755 target/release/contextgc ~/.local/bin/contextgc</span>
+<span class="comment"># Start a new shell if ~/.local/bin is not on your PATH yet.</span></code>
+                      <button class="copy-button" type="button" data-copy="mkdir -p ~/.local/bin\ninstall -m 755 target/release/contextgc ~/.local/bin/contextgc"><span>Copy</span></button>
+                    </div>
+                  </div>
+                </article>
+                <article class="instruction-block" data-step-block="4">
+                  <div class="instruction-number">04</div>
+                  <div>
+                    <h3>Verify the install</h3>
+                    <div class="command-box compact-command">
+                      <code><span class="command">contextgc --help</span></code>
+                      <button class="copy-button" type="button" data-copy="contextgc --help"><span>Copy</span></button>
+                    </div>
+                    <p class="success-note"><span>✓</span> You should see the <code>ingest</code>, <code>status</code>, <code>plan</code>, <code>compact</code>, <code>stats</code>, and <code>protocol</code> commands.</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="install-panel" data-os-panel="windows" hidden>
+                <article class="instruction-block">
+                  <div class="instruction-number">01</div>
+                  <div>
+                    <h3>Install Rust</h3>
+                    <p>Install Git from <a href="https://git-scm.com/download/win" target="_blank" rel="noreferrer">git-scm.com</a>, then install Rustup.</p>
+                    <div class="command-box"><code><span class="command">winget install Rustlang.Rustup</span></code><button class="copy-button" type="button" data-copy="winget install Rustlang.Rustup"><span>Copy</span></button></div>
+                  </div>
+                </article>
+                <article class="instruction-block">
+                  <div class="instruction-number">02</div>
+                  <div>
+                    <h3>Clone and build</h3>
+                    <div class="command-box"><code><span class="command">git clone https://github.com/wuisabel-gif/ContextGC.git</span>
+<span class="command">cd ContextGC</span>
+<span class="command">cargo build --release --workspace</span></code><button class="copy-button" type="button" data-copy="git clone https://github.com/wuisabel-gif/ContextGC.git\ncd ContextGC\ncargo build --release --workspace"><span>Copy</span></button></div>
+                  </div>
+                </article>
+                <article class="instruction-block">
+                  <div class="instruction-number">03</div>
+                  <div>
+                    <h3>Install and verify</h3>
+                    <div class="command-box"><code><span class="command">New-Item -ItemType Directory -Force "$HOME\\.local\\bin"</span>
+<span class="command">Copy-Item target\\release\\contextgc.exe "$HOME\\.local\\bin\\contextgc.exe"</span>
+<span class="command">.\\target\\release\\contextgc.exe --help</span></code><button class="copy-button" type="button" data-copy="New-Item -ItemType Directory -Force \"$HOME\\.local\\bin\"\nCopy-Item target\\release\\contextgc.exe \"$HOME\\.local\\bin\\contextgc.exe\"\n.\\target\\release\\contextgc.exe --help"><span>Copy</span></button></div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="install-panel" data-os-panel="source" hidden>
+                <article class="instruction-block source-only">
+                  <div class="instruction-number">↗</div>
+                  <div>
+                    <h3>Build directly from a checkout</h3>
+                    <p>If you already have the source, the only command you need is:</p>
+                    <div class="command-box"><code><span class="command">cargo build --release --workspace</span></code><button class="copy-button" type="button" data-copy="cargo build --release --workspace"><span>Copy</span></button></div>
+                    <p>The binary is written to <code>target/release/contextgc</code>. For development, use <code>cargo test --workspace</code> and <code>cargo run -p contextgc-cli -- --help</code>.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="first-run" class="section-wrap first-run-section">
+          <div class="section-heading centered-heading">
+            <div>
+              <div class="section-kicker">02 / FIRST RUN</div>
+              <h2>See it manage a session.</h2>
+            </div>
+            <p>Start with the included fixture, then inspect the plan before applying it.</p>
+          </div>
+          <div class="first-run-grid">
+            <div class="run-card run-card-main">
+              <div class="run-card-header"><span class="step-pill">01</span><span>Ingest an example session</span></div>
+              <div class="command-box"><code><span class="command">contextgc ingest \</span>
+<span class="command">  --session demo \</span>
+<span class="command">  --file fixtures/repeated-file-reads.jsonl</span></code><button class="copy-button" type="button" data-copy="contextgc ingest --session demo --file fixtures/repeated-file-reads.jsonl"><span>Copy</span></button></div>
+              <p>ContextGC stores the original events in SQLite and builds its active context index.</p>
+            </div>
+            <div class="run-card">
+              <div class="run-card-header"><span class="step-pill">02</span><span>Inspect pressure</span></div>
+              <div class="command-box"><code><span class="command">contextgc status --session demo</span></code><button class="copy-button" type="button" data-copy="contextgc status --session demo"><span>Copy</span></button></div>
+              <p>See token usage, projected pressure, composition, and reclaim candidates.</p>
+            </div>
+            <div class="run-card">
+              <div class="run-card-header"><span class="step-pill">03</span><span>Preview the plan</span></div>
+              <div class="command-box"><code><span class="command">contextgc plan --session demo</span></code><button class="copy-button" type="button" data-copy="contextgc plan --session demo"><span>Copy</span></button></div>
+              <p>Review every object-level action before changing the working set.</p>
+            </div>
+            <div class="run-card run-card-accent">
+              <div class="run-card-header"><span class="step-pill">04</span><span>Apply it</span></div>
+              <div class="command-box"><code><span class="command">contextgc compact --session demo</span></code><button class="copy-button" type="button" data-copy="contextgc compact --session demo"><span>Copy</span></button></div>
+              <p>Materialize a safer, smaller working set while preserving the full history.</p>
+            </div>
+          </div>
+          <div class="terminal-preview">
+            <div class="terminal-header"><span class="mini-dot red"></span><span class="mini-dot amber"></span><span class="mini-dot green"></span><span>contextgc status</span></div>
+            <pre><span class="terminal-dim">ContextGC</span>
+<span class="terminal-rule">────────────────────────────────────────</span>
+<span class="terminal-label">Model</span>      generic-128k
+<span class="terminal-label">Current</span>    61,204 tokens <span class="terminal-green">(56.7%)</span>
+<span class="terminal-label">Predicted</span>  87,912 tokens <span class="terminal-yellow">(81.4%)</span>
+<span class="terminal-label">Pressure</span>   <span class="terminal-yellow">COMPACT</span>
+
+<span class="terminal-dim">Top reclaim candidates</span>
+<span class="terminal-rule">────────────────────────────────────────</span>
+<span class="terminal-green">1.</span> build-281     <span class="terminal-yellow">REDUCE</span>       42,000 → 1,180 tokens
+<span class="terminal-green">2.</span> src/auth.ts   <span class="terminal-blue">EXTERNALIZE</span>  8,842 → 6 tokens
+<span class="terminal-green">3.</span> constraint-44 <span class="terminal-purple">PINNED</span>        328 tokens</pre>
+          </div>
+        </section>
+
+        <section id="how-it-works" class="section-wrap how-section">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker">03 / HOW IT WORKS</div>
+              <h2>Context is managed as a working set.</h2>
+            </div>
+            <p>Deterministic Rust logic handles the critical path. Semantic compression can be added later without making it mandatory.</p>
+          </div>
+          <div class="how-grid">
+            <article class="feature-card"><div class="feature-number">01</div><h3>Observe</h3><p>Every message, file read, tool result, error, diff, and checkpoint becomes a typed context object with token accounting and provenance.</p></article>
+            <article class="feature-card"><div class="feature-number">02</div><h3>Predict</h3><p>Exponential moving averages estimate the next tool result and assistant continuation before an autonomous loop overflows.</p></article>
+            <article class="feature-card"><div class="feature-number">03</div><h3>Decide</h3><p>Importance, recency, dependency, authority, uniqueness, recoverability, and redundancy produce an explainable plan.</p></article>
+            <article class="feature-card"><div class="feature-number">04</div><h3>Materialize</h3><p>The least destructive actions are applied until the target budget is safe: deduplicate, reduce, extract, externalize, or evict.</p></article>
+          </div>
+          <div class="action-ladder">
+            <span class="ladder-label">least destructive</span>
+            <span class="ladder-action">KEEP</span><span class="ladder-arrow">→</span><span class="ladder-action">DEDUPLICATE</span><span class="ladder-arrow">→</span><span class="ladder-action">REDUCE</span><span class="ladder-arrow">→</span><span class="ladder-action">EXTRACT</span><span class="ladder-arrow">→</span><span class="ladder-action">EXTERNALIZE</span><span class="ladder-arrow">→</span><span class="ladder-action ladder-last">EVICT</span><span class="ladder-label">more reclaim</span>
+          </div>
+        </section>
+
+        <section id="integrate" class="section-wrap integrate-section">
+          <div class="integrate-panel">
+            <div class="section-kicker">04 / INTEGRATE</div>
+            <h2>One protocol. Any harness.</h2>
+            <p>Pi, Rho, TypeScript agents, Python agents, and custom CLI tools can communicate with the same Rust engine over newline-delimited JSON.</p>
+            <div class="protocol-code command-box"><code><span class="json-brace">{</span><span class="json-key">"type"</span>: <span class="json-string">"session.start"</span>, <span class="json-key">"request_id"</span>: <span class="json-string">"1"</span>,
+  <span class="json-key">"session_id"</span>: <span class="json-string">"coding"</span>, <span class="json-key">"model"</span>: <span class="json-brace">{</span>
+    <span class="json-key">"name"</span>: <span class="json-string">"generic-200k"</span>, <span class="json-key">"context_window"</span>: <span class="json-number">200000</span>
+  <span class="json-brace">}</span><span class="json-brace">}</span>
+<span class="json-brace">{</span><span class="json-key">"type"</span>: <span class="json-string">"context.plan"</span>, <span class="json-key">"request_id"</span>: <span class="json-string">"2"</span><span class="json-brace">}</span></code><button class="copy-button" type="button" data-copy='{"type":"context.plan","request_id":"2"}'><span>Copy</span></button></div>
+            <a class="text-link" href="https://github.com/wuisabel-gif/ContextGC/blob/main/docs/integration.md" target="_blank" rel="noreferrer">Read the integration guide ↗</a>
+          </div>
+          <div class="model-area">
+            <div class="model-cloud" aria-label="Supported model types are model agnostic">
+              <div class="model-center">ContextGC</div>
+              <a class="model-node node-one harness-node" href="https://github.com/badlogic/pi-mono" target="_blank" rel="noreferrer" aria-label="Pi coding agent"><span class="harness-logo pi-logo">π</span>Pi</a>
+              <a class="model-node node-two harness-node" href="https://github.com/wuisabel-gif/rho" target="_blank" rel="noreferrer" aria-label="Rho agent harness"><span class="harness-logo rho-logo">ρ</span>Rho</a>
+              <span class="model-node node-three">Python</span><span class="model-node node-four">TypeScript</span><span class="model-node node-five">CLI</span><span class="model-node node-six">custom</span>
+              <i class="orbit orbit-a"></i><i class="orbit orbit-b"></i>
+            </div>
+            <div class="harness-links" aria-label="ContextGC harness integrations">
+              <a class="harness-link" href="https://github.com/badlogic/pi-mono" target="_blank" rel="noreferrer"><span class="harness-logo pi-logo">π</span><span><strong>Pi</strong><small>coding agent</small></span><span class="external-arrow">↗</span></a>
+              <a class="harness-link" href="https://github.com/wuisabel-gif/rho" target="_blank" rel="noreferrer"><span class="harness-logo rho-logo">ρ</span><span><strong>Rho</strong><small>Rust agent harness</small></span><span class="external-arrow">↗</span></a>
+            </div>
+          </div>
+        </section>
+
+        <section id="memory" class="section-wrap memory-section">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker">05 / OPTIONAL MEMORY</div>
+              <h2>ContextGC + MemWhale: working memory meets long-term memory.</h2>
+            </div>
+            <p>Keep the projects separate and let each answer a different question: what should the model know now, and what might be useful again later?</p>
+          </div>
+          <div class="memory-layout">
+            <div class="memory-diagram" aria-label="ContextGC and MemWhale lifecycle">
+              <div class="memory-harness"><span class="memory-icon">⌁</span> Agent harness <small>Pi · Rho · custom</small></div>
+              <div class="memory-line down"></div>
+              <div class="memory-card memory-contextgc"><span class="memory-card-icon">⌁</span><div><strong>ContextGC</strong><small>active context governor</small></div><span class="memory-card-arrow">↓</span></div>
+              <div class="memory-split"><span>keep / compact</span><span>memory value is high</span></div>
+              <div class="memory-branches"><div class="memory-branch-line"></div><div class="memory-card memory-active"><strong>Active model context</strong><small>what the model knows right now</small></div><div class="memory-card memory-memwhale"><span class="memory-card-icon rho-logo">ρ</span><div><strong>MemWhale</strong><small>persistent local memory</small></div><a href="https://github.com/wuisabel-gif/MemWhale" target="_blank" rel="noreferrer" aria-label="Open MemWhale on GitHub">↗</a></div></div>
+              <div class="memory-return"><span>relevant again</span><i></i><strong>promote through ContextGC</strong></div>
+            </div>
+            <div class="memory-copy">
+              <div class="memory-quote">“What should the model know right now?”<strong>ContextGC</strong></div>
+              <div class="memory-quote">“What happened before, and what might be useful again?”<strong>MemWhale</strong></div>
+              <p>Not everything that leaves active context should become a memory. ContextGC can keep separate scores for active-context retention and long-term memory value.</p>
+              <div class="memory-actions"><span class="memory-action high">HIGH MEMORY VALUE <b>→</b> STORE</span><span class="memory-action low">LOW MEMORY VALUE <b>→</b> DISCARD</span></div>
+              <a class="text-link" href="https://github.com/wuisabel-gif/MemWhale" target="_blank" rel="noreferrer">Explore MemWhale ↗</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="final-cta section-wrap">
+          <div><div class="section-kicker">READY TO TRY IT?</div><h2>Give your next long session some breathing room.</h2></div>
+          <a class="button button-primary" href="#install">Start with the install <span>↓</span></a>
+        </section>
+      </main>
+
+      <footer class="footer section-wrap">
+        <a class="brand" href="#top"><img class="brand-logo" src="logo.png" alt="ContextGC" /><span>Context<span class="brand-accent">GC</span></span></a>
+        <span>Predictive context management for long-running agents.</span>
+        <div class="footer-links"><a href="https://github.com/wuisabel-gif/ContextGC" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://github.com/wuisabel-gif/ContextGC/blob/main/LICENSE" target="_blank" rel="noreferrer">MIT / Apache-2.0</a></div>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

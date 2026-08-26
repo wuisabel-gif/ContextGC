@@ -1,0 +1,15 @@
+[package]
+name = "contextgc-memory"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+description = "Optional long-term memory backend interface for ContextGC"
+
+[dependencies]
+async-trait = { workspace = true }
+contextgc-core = { path = "../contextgc-core" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }

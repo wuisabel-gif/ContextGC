@@ -610,6 +610,8 @@ pub struct Config {
     pub prediction: PredictionConfig,
     #[serde(default)]
     pub semantic: SemanticConfig,
+    #[serde(default)]
+    pub memory: MemoryConfig,
 }
 
 impl Config {
@@ -752,6 +754,50 @@ impl Default for PredictionConfig {
 #[serde(default)]
 pub struct SemanticConfig {
     pub enabled: bool,
+}
+
+/// Optional long-term memory policy. The backend is intentionally represented
+/// as configuration data in core; implementations live outside `core`.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(default)]
+pub struct MemoryConfig {
+    pub backend: String,
+    pub store_externalized: bool,
+    pub store_checkpoints: bool,
+    pub store_errors: bool,
+    pub store_successful_fixes: bool,
+    pub store_raw_logs: bool,
+    pub memwhale: MemWhaleConfig,
+}
+
+impl Default for MemoryConfig {
+    fn default() -> Self {
+        Self {
+            backend: "none".to_string(),
+            store_externalized: true,
+            store_checkpoints: true,
+            store_errors: true,
+            store_successful_fixes: true,
+            store_raw_logs: false,
+            memwhale: MemWhaleConfig::default(),
+        }
+    }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(default)]
+pub struct MemWhaleConfig {
+    pub transport: String,
+    pub command: String,
+}
+
+impl Default for MemWhaleConfig {
+    fn default() -> Self {
+        Self {
+            transport: "stdio".to_string(),
+            command: "mw-mcp".to_string(),
+        }
+    }
 }
 
 #[derive(Debug, thiserror::Error, PartialEq)]

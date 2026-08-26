@@ -247,6 +247,35 @@ Example:
 
 The integration layer should remain thin: harness adapters translate events into ContextGC's generic context model while compaction policy stays inside the core engine.
 
+## ContextGC + MemWhale
+
+[MemWhale](https://github.com/wuisabel-gif/MemWhale) is an optional long-term
+memory companion, not a replacement for ContextGC.
+
+> ContextGC manages what stays in an agent's context. MemWhale preserves what
+> is worth remembering after it leaves.
+
+The distinction is deliberate:
+
+- **ContextGC:** What should the model know right now?
+- **MemWhale:** What happened before, and what might be useful again?
+
+When an object leaves the active working set, ContextGC can make a second
+decision based on long-term memory value. A novel successful fix or architecture
+decision may be stored; a noisy successful build log may simply be discarded.
+Relevant memories can later be retrieved, scored, and promoted back into the
+working set.
+
+The projects remain independent. The optional interface lives in
+`crates/contextgc-memory`, and the preferred first integration path is MCP:
+
+```text
+ContextGC ── MCP/stdio ──> mw-mcp ──> MemWhale SQLite memory
+```
+
+Read the [MemWhale integration guide](docs/memwhale-integration.md) for the
+lifecycle, memory-value policy, and backend boundary.
+
 ## Pressure model
 
 ContextGC operates at multiple pressure levels rather than using a single emergency threshold.
@@ -289,6 +318,7 @@ crates/
 ├── contextgc-policy
 ├── contextgc-store
 ├── contextgc-engine
+├── contextgc-memory
 ├── contextgc-protocol
 └── contextgc-cli
 adapters/
@@ -346,6 +376,12 @@ Session orchestration:
 - working-set materialization
 - checkpoint ingestion
 - persistent working-set recovery
+
+### `contextgc-memory`
+
+Optional long-term memory backend interface. ContextGC remains independent of
+any particular memory system; MemWhale can be connected through MCP or a thin
+backend adapter.
 
 ### `contextgc-protocol`
 

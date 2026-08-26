@@ -13,6 +13,7 @@ contextgc/
 │   ├── contextgc-policy/        # Importance / recoverability / compaction policy rules
 │   ├── contextgc-store/         # SQLite persistent history + event log
 │   ├── contextgc-engine/        # Session orchestration and working-set materialization
+│   ├── contextgc-memory/        # Optional long-term memory backend contracts
 │   ├── contextgc-cli/           # `contextgc` binary (status, plan, compact, stats)
 │   └── contextgc-protocol/        # JSON-RPC/stdio protocol types + framing
 ├── adapters/pi/                 # TypeScript adapter placeholder (Phase 10)
@@ -213,5 +214,11 @@ the stdio server and future adapters.
 
 ### Phase 10
 - Pi adapter (TypeScript placeholder / thin translator).
+
+### Optional memory integration
+- Keep ContextGC and MemWhale as separate projects.
+- Expose a generic `MemoryBackend` interface from `contextgc-memory`.
+- Prefer MCP/stdio transport for the first MemWhale adapter.
+- Score long-term memory value separately from active-context retention value.
 
 I will now begin implementation at Phase 1.

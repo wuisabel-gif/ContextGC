@@ -44,6 +44,38 @@ A minimal adapter implements:
 
 Do not implement compaction intelligence in the adapter.
 
+## Optional long-term memory: MemWhale
+
+[MemWhale](https://github.com/wuisabel-gif/MemWhale) can complement ContextGC
+as a persistent local memory backend. Keep the responsibilities separate:
+
+- ContextGC manages the active model working set.
+- MemWhale stores durable debugging memories that may become relevant later.
+
+ContextGC should not send every evicted object to memory. It should use a
+separate long-term memory-value decision so novel fixes and architecture
+decisions can be retained while noisy raw logs are discarded.
+
+The reusable contracts are in `crates/contextgc-memory`; the first transport
+boundary should be MCP over stdio rather than a direct Rust dependency:
+
+```toml
+[memory]
+backend = "memwhale"
+store_externalized = true
+store_checkpoints = true
+store_errors = true
+store_successful_fixes = true
+store_raw_logs = false
+
+[memory.memwhale]
+transport = "stdio"
+command = "mw-mcp"
+```
+
+See [`docs/memwhale-integration.md`](memwhale-integration.md) for the full
+working-memory/long-term-memory lifecycle.
+
 ## Pi adapter
 
 The Pi adapter in `adapters/pi/` provides a small `ContextGCClient` that
