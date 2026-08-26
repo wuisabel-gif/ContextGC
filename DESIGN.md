@@ -221,4 +221,10 @@ the stdio server and future adapters.
 - Prefer MCP/stdio transport for the first MemWhale adapter.
 - Score long-term memory value separately from active-context retention value.
 
+### Optional routing integration
+- Keep Tokenomist above ContextGC as the model/agent selection layer.
+- Pass the selected model's context-window metadata through `session.start`.
+- Feed ContextGC token and pressure telemetry back to Tokenomist for future
+  cost-aware routing decisions.
+
 I will now begin implementation at Phase 1.

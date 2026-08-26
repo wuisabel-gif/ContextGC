@@ -76,6 +76,41 @@ command = "mw-mcp"
 See [`docs/memwhale-integration.md`](memwhale-integration.md) for the full
 working-memory/long-term-memory lifecycle.
 
+## Tokenomist model routing
+
+[Tokenomist](https://github.com/wuisabel-gif/Tokenomist) can sit one layer
+above ContextGC. Tokenomist chooses a capable model or agent by task success
+and cost; ContextGC receives that model's context budget and manages what it
+sees during the run.
+
+```text
+Tokenomist selects model/agent
+            │
+            ▼
+ContextGC receives context_window + reserve
+            │
+            ▼
+ContextGC materializes the active working set
+            │
+            ▼
+agent calls the selected model
+            │
+            ▼
+ContextGC returns token/pressure telemetry
+            │
+            ▼
+Tokenomist improves future routing
+```
+
+The JSONL protocol already provides the handoff: `session.start` accepts model
+metadata, while `context.stats` reports active tokens, pressure, projected
+pressure, and composition. This keeps Tokenomist and ContextGC independent and
+allows the same boundary to work with Pi, Rho, Python, TypeScript, and custom
+harnesses.
+
+See [`docs/tokenomist-integration.md`](tokenomist-integration.md) for the
+recommended lifecycle.
+
 ## Pi adapter
 
 The Pi adapter in `adapters/pi/` provides a small `ContextGCClient` that
